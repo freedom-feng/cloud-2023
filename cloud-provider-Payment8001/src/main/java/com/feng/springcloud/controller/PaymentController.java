@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @Slf4j
@@ -54,9 +55,19 @@ public class PaymentController {
         payment payment= paymentService.getPaymentById(id);
         log.info("*********查询结果为"+payment+"hahah");
         if(payment!=null){
-            return new CommonResult(200,"查询成功",payment);
+            return new CommonResult(200,"查询成功 port:8001",payment);
         }else {
             return new CommonResult(400,"查询失败",null);
         }
+    }
+
+    @GetMapping(value = "/apyemnt/timeout")
+    public String paymentFeaginTimeout(){
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        return  serverPort;
     }
 }

@@ -12,6 +12,8 @@
         <module>cloud-provider-Payment8002</module>
         <module>cloud-provider-Payment8006</module>
         <module>cloud-consumerConsul-order80</module>
+        <module>cloud-consumer-feginorder80</module>
+        <module>cloud-provider-hystrix-payment8001</module>
     </modules>
 
 

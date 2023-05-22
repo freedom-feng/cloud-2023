@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @Slf4j
@@ -35,10 +36,19 @@ public class PaymentController {
         log.info("*********查询结果为"+payment+"hahah");
         if(payment!=null){
             log.info("成功了");
-            return  new CommonResult(200,"查询成功",payment);
+            return  new CommonResult(200,"查询成功 port:8002",payment);
         }else {
             log.info("失败了");
             return  new CommonResult(400,"没有查到",null);
         }
+    }
+    @GetMapping(value = "/apyemnt/timeout")
+    public String paymentFeaginTimeout(){
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        return  serverPort;
     }
 }
